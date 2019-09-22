@@ -33,7 +33,7 @@ steps:
     ..\depot_tools\python scripts/bootstrap.py
     gclient sync
     git checkout master
-  displayName: 'Sync skia deps'
+  displayName: 'Sync angle deps'
   
 - powershell: |
     choco install llvm
