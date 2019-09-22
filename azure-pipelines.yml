@@ -24,7 +24,7 @@ steps:
   
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
-    fetch angle
+    git clone https://chromium.googlesource.com/angle/angle
   displayName: 'Fetch angle repo'
 
 - script: |
