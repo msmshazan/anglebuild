@@ -48,4 +48,4 @@ steps:
     cd angle
     cd out\Shared_64_static_vs
     msbuild all.sln
-  displayName: 'Build skia'
+  displayName: 'Build ANGLE'
