@@ -40,6 +40,7 @@ steps:
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     call "..\depot_tools\python.bat"
+    where python
     gclient sync
     git checkout master
   displayName: 'Sync angle'
