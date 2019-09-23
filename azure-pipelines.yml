@@ -19,8 +19,8 @@ steps:
     Remove-Item depot_tools.zip
   displayName: 'Fetch depot_tools'
   
-- script: |
-    set PATH=%cd%\depot_tools;%PATH%;
+- powershell: |
+    $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     gclient
   displayName: 'Config depot_tools'
@@ -36,8 +36,8 @@ steps:
     ..\depot_tools\python scripts/bootstrap.py
   displayName: 'Setup angle deps'
 
-- script: |
-    set PATH=%cd%\depot_tools;%PATH%;
+- powershell: |
+    $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
     gclient sync
     git checkout master
