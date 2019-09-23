@@ -28,8 +28,6 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     git clone https://chromium.googlesource.com/angle/angle
-    cd angle
-    gclient
   displayName: 'Fetch angle repo'
 
 - script: |
@@ -42,6 +40,7 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
+    gclient
     gclient sync
   displayName: 'Sync angle'
 
