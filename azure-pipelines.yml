@@ -39,7 +39,7 @@ steps:
 - powershell: |
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
-    ..\depot_tools\python
+    &call "..\depot_tools\python.bat"
     gclient sync
     git checkout master
   displayName: 'Sync angle'
