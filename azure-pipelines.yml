@@ -29,6 +29,7 @@ steps:
     set PATH=%cd%\depot_tools;%PATH%;
     git clone https://chromium.googlesource.com/angle/angle
     git checkout master
+    dir
   displayName: 'Fetch angle repo'
 
 - script: |
