@@ -56,6 +56,6 @@ steps:
 - script: |
     call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
     cd angle
-    cd out\Shared_64_static_vs
+    cd out\Build_64
     msbuild all.sln
   displayName: 'Build ANGLE'
