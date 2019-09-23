@@ -42,6 +42,7 @@ steps:
     cd angle
     call "..\depot_tools\python.bat"
     git checkout master
+    gclient sync
   displayName: 'Sync angle'
 
 - script: |
