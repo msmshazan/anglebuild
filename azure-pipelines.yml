@@ -39,13 +39,13 @@ steps:
   displayName: 'Setup angle deps'
 
 - script: |
+    choco install llvm
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     gclient sync
   displayName: 'Sync angle'
 
 - script: |
-    choco install llvm
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     call "..\depot_tools\python.bat"
