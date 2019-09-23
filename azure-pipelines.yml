@@ -34,14 +34,13 @@ steps:
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     ..\depot_tools\python scripts/bootstrap.py
+    gclient sync
   displayName: 'Setup angle deps'
 
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     call "..\depot_tools\python.bat"
-    where python
-    gclient sync
     git checkout master
   displayName: 'Sync angle'
 
