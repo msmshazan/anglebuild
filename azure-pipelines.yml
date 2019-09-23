@@ -34,8 +34,7 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    ..\depot_tools\python.bat
-    python2 scripts/bootstrap.py
+    ..\depot_tools\python scripts/bootstrap.py
   displayName: 'Setup angle deps'
 
 - script: |
