@@ -8,6 +8,7 @@ trigger:
 
 variables:
   DEPOT_TOOLS_WIN_TOOLCHAIN: '0'
+  PYTHON_HOME: ''
 
 pool:
   vmImage: 'windows-2019'
