@@ -22,7 +22,7 @@ steps:
 - powershell: |
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
-    gclient
+    gclient config
     gclient sync
   displayName: 'Config depot_tools'
   
@@ -41,7 +41,7 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    gclient
+    gclient config
     gclient sync
   displayName: 'Sync angle'
 
