@@ -41,7 +41,7 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    call "..\depot_tools\python.bat"
+    ..\depot_tools\python
     gclient sync
   displayName: 'Sync angle'
 
