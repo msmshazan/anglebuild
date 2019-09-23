@@ -35,13 +35,12 @@ steps:
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    ..\depot_tools\python scripts/bootstrap.py
+    python2 scripts/bootstrap.py
   displayName: 'Setup angle deps'
 
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    ..\depot_tools\python
     gclient sync
   displayName: 'Sync angle'
 
