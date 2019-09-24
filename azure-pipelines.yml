@@ -23,8 +23,8 @@ steps:
   
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
-    git clone https://chromium.googlesource.com/angle/angle
-    git checkout master
+    gclient fetch https://chromium.googlesource.com/angle/angle
+    gclient checkout master
     dir
   displayName: 'Fetch angle repo'
 
