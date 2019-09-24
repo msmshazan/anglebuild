@@ -23,7 +23,7 @@ steps:
   
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
-    gclient fetch https://chromium.googlesource.com/angle/angle
+    gclient fetch https://chromium.googlesource.com/angle
     gclient checkout master
     dir
   displayName: 'Fetch angle repo'
