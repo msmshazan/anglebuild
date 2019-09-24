@@ -33,6 +33,7 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
+    where python
     gclient sync
   displayName: 'Setup angle deps'
 
