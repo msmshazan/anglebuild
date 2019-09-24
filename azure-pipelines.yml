@@ -27,10 +27,10 @@ steps:
     dir
   displayName: 'Fetch angle repo'
 
-- script: |
-    set PATH=%cd%\depot_tools;%PATH%;
+- powershell: |
+    $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
-    ..\depot_tools\python scripts/bootstrap.py
+    ..\depot_tools\python scripts\bootstrap.py
     gclient sync
   displayName: 'Setup angle deps'
 
