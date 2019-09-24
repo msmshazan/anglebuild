@@ -10,7 +10,7 @@ pool:
 
 steps:
 - powershell: |
-    where python
+    &where python
     Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -OutFile depot_tools.zip
     &7z x depot_tools.zip -odepot_tools
     Remove-Item depot_tools.zip
@@ -33,7 +33,7 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
-    where python
+    &where python
     gclient sync
   displayName: 'Setup angle deps'
 
