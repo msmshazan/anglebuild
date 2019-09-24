@@ -23,8 +23,7 @@ steps:
   
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
-    gclient fetch https://chromium.googlesource.com/angle
-    gclient checkout master
+    git clone https://chromium.googlesource.com/angle/angle
     dir
   displayName: 'Fetch angle repo'
 
@@ -32,18 +31,17 @@ steps:
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
     ..\depot_tools\python scripts/bootstrap.py
+    gclient sync
   displayName: 'Setup angle deps'
 
 - script: |
-    choco install llvm
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
-    ..\depot_tools\python
-    gclient sync
   displayName: 'Sync angle'
 
 - script: |
     set PATH=%cd%\depot_tools;%PATH%;
+    choco install llvm
     cd angle
     call "..\depot_tools\python.bat"
     gn gen out/Build_32 --args='clang_win=\"C:\Program Files\LLVM\" target_cpu=\"x32\"' --ide=vs
