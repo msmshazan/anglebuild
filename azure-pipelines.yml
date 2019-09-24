@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -43,6 +38,7 @@ steps:
     choco install llvm
     set PATH=%cd%\depot_tools;%PATH%;
     cd angle
+    ..\depot_tools\python
     gclient sync
   displayName: 'Sync angle'
 
