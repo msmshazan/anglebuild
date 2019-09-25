@@ -10,6 +10,7 @@ pool:
 
 steps:
 - powershell: |
+    $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     &where python
     Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -OutFile depot_tools.zip
     &7z x depot_tools.zip -odepot_tools
@@ -17,17 +18,20 @@ steps:
   displayName: 'Fetch depot_tools'
   
 - powershell: |
+    $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     gclient
   displayName: 'Config depot_tools'
   
 - script: |
+    set DEPOT_TOOLS_WIN_TOOLCHAIN=0
     set PATH=%cd%\depot_tools;%PATH%;
     git clone https://chromium.googlesource.com/angle/angle
   displayName: 'Fetch angle repo'
 
 - powershell: |
+    $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
@@ -41,6 +45,7 @@ steps:
   displayName: 'Sync angle'
 
 - script: |
+    $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     set PATH=%cd%\depot_tools;%PATH%;
     choco install llvm
     cd angle
