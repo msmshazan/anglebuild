@@ -24,6 +24,7 @@ steps:
   displayName: 'Config depot_tools'
   
 - script: |
+    echo toolvar==%DEPOT_TOOLS_WIN_TOOLCHAIN%
     set PATH=%cd%\depot_tools;%PATH%;
     git clone https://chromium.googlesource.com/angle/angle
     dir
