@@ -17,7 +17,7 @@ steps:
   displayName: 'Fetch depot_tools'
   
 - powershell: |
-    $env:Path = "$pwd\depot_tools;"
+    $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     gclient
   displayName: 'Config depot_tools'
@@ -28,7 +28,7 @@ steps:
   displayName: 'Fetch angle repo'
 
 - powershell: |
-    $env:Path = "$pwd\depot_tools;" 
+    $env:Path = "$pwd\depot_tools;" + $env:Path
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
     &where python
