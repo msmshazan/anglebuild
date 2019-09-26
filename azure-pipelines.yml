@@ -27,12 +27,12 @@ steps:
 - script: |
     set DEPOT_TOOLS_WIN_TOOLCHAIN=0
     set PATH=%cd%\depot_tools;%PATH%;
-    git clone https://chromium.googlesource.com/angle/angle
   displayName: 'Fetch angle repo'
 
 - powershell: |
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
+    gclient fetch angle/angle
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
     &where python
