@@ -3,6 +3,7 @@ trigger:
 
 variables:
   DEPOT_TOOLS_WIN_TOOLCHAIN: '0'
+  DEPOT_TOOLS_METRICS: '0'
   PYTHON_HOME: ''
 
 pool:
