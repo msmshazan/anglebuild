@@ -19,15 +19,12 @@ steps:
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
-    gclient
     ./update_depot_tools.bat
   displayName: 'Config depot_tools'
   
 - script: |
     git clone https://chromium.googlesource.com/angle/angle
     cd angle
-    gclient config https://chromium.googlesource.com/angle/angle
-    gclient sync
   displayName: 'Fetch angle repo'
 
 - powershell: |
