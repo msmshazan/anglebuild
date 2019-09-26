@@ -36,7 +36,7 @@ steps:
     refreshenv
     cd angle
     (get-command python).Path
-    python scripts\bootstrap.py
+    python2 scripts\bootstrap.py
     refreshenv
     gclient sync
   displayName: 'Setup angle deps'
