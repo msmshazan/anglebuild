@@ -21,6 +21,7 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     ./update_depot_tools.bat
+    dir
   displayName: 'Config depot_tools'
   
 - script: |
