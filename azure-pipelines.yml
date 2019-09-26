@@ -22,18 +22,17 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     gclient
-    gclient sync
   displayName: 'Config depot_tools'
   
 - script: |
     set DEPOT_TOOLS_WIN_TOOLCHAIN=0
     set PATH=%cd%\depot_tools;%PATH%;
+    fetch angle/angle
   displayName: 'Fetch angle repo'
 
 - powershell: |
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
-    gclient fetch angle/angle
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
     &where python
