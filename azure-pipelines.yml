@@ -26,6 +26,8 @@ steps:
   
 - script: |
     git clone https://chromium.googlesource.com/angle/angle
+    cd angle
+    gclient
   displayName: 'Fetch angle repo'
 
 - powershell: |
