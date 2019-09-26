@@ -25,9 +25,7 @@ steps:
   displayName: 'Config depot_tools'
   
 - script: |
-    set DEPOT_TOOLS_WIN_TOOLCHAIN=0
-    set PATH=%cd%\depot_tools;%PATH%;
-    fetch angle/angle
+    git clone https://chromium.googlesource.com/angle/angle
   displayName: 'Fetch angle repo'
 
 - powershell: |
