@@ -32,9 +32,11 @@ steps:
     choco install llvm
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
+    refreshenv
     cd angle
     ..\depot_tools\python scripts\bootstrap.py
     (get-command python).Path
+    refreshenv
     gclient sync
   displayName: 'Setup angle deps'
 
