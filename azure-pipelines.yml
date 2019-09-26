@@ -21,6 +21,7 @@ steps:
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
+    ./update_depot_tools.bat
     gclient config
     gclient sync
   displayName: 'Config depot_tools'
