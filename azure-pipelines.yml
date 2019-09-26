@@ -22,6 +22,7 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     cd depot_tools
     gclient
+    gclient sync
   displayName: 'Config depot_tools'
   
 - script: |
