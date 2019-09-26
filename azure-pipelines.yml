@@ -33,7 +33,7 @@ steps:
     $env:Path = "$pwd\depot_tools;" + $env:Path
     refreshenv
     cd angle
-    ..\depot_tools\python scripts\bootstrap.py
+    python scripts\bootstrap.py
     (get-command python).Path
     refreshenv
     gclient sync
