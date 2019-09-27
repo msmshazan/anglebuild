@@ -5,6 +5,7 @@ variables:
   DEPOT_TOOLS_WIN_TOOLCHAIN: '0'
   DEPOT_TOOLS_METRICS: '0'
   PYTHON_HOME: ''
+  ANGLE_REVISION: 'f8bb908702bd5a0b8ce4ae0b109efdbc78afbf2b'
 
 pool:
   vmImage: 'windows-2019'
@@ -39,7 +40,7 @@ steps:
     (get-command python).Path
     python scripts\bootstrap.py
     refreshenv
-    gclient sync
+    gclient sync --revision=%SKIA_REVISION%
   displayName: 'Setup angle deps'
 
 - script: |
@@ -58,8 +59,9 @@ steps:
 - script: |
     call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
     cd angle
+    msbuild out\Build_64\all.sln /m
+    msbuild out\Build_32\all.sln /m
     cd out\Build_64
     dir
-    msbuild all.sln
   displayName: 'Build ANGLE'
   timeoutInMinutes: 0
