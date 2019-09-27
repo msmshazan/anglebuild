@@ -11,7 +11,6 @@ pool:
 
 steps:
 - powershell: |
-    Choco uninstall python
     Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -OutFile depot_tools.zip
     &7z x depot_tools.zip -odepot_tools
     Remove-Item depot_tools.zip
@@ -26,6 +25,7 @@ steps:
   displayName: 'Config depot_tools'
   
 - script: |
+    del C:\ProgramData\Chocolatey\bin\pytho*.exe
     git clone https://chromium.googlesource.com/angle/angle
     cd angle
   displayName: 'Fetch angle repo'
