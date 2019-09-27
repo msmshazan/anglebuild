@@ -84,7 +84,7 @@ jobs:
 
   - publish: $(Build.SourcesDirectory)/ANGLE.zip
     artifact: ANGLE Binaries
-
+    
   - task: GitHubRelease@1
     inputs:
       gitHubConnection: 'msmshazan''s Github PAT'
