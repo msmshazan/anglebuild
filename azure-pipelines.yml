@@ -31,7 +31,7 @@ steps:
   displayName: 'Fetch angle repo'
 
 - powershell: |
-    choco install llvm
+    choco install llvm 2>&1>$null
     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
     $env:Path = "$pwd\depot_tools;" + $env:Path
     refreshenv
