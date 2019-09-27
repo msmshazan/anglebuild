@@ -8,7 +8,7 @@ variables:
   ANGLE_REVISION: 'f8bb908702bd5a0b8ce4ae0b109efdbc78afbf2b'
 
 jobs:
-- job: Build Skia
+- job: Build_Skia
   timeoutInMinutes: 0
   pool:
    vmImage: 'windows-2019'
