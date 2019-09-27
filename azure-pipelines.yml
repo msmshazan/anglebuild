@@ -62,6 +62,38 @@ jobs:
       cd angle
       msbuild out\Build_64\all.sln /m
       msbuild out\Build_32\all.sln /m
-      cd out\Build_64
-      dir
     displayName: 'Build ANGLE'
+
+  - powershell: |
+      New-Item -Name "x64" -ItemType "directory" 
+      New-Item -Name "x86" -ItemType "directory"
+      New-Item -Name "lib" -ItemType "directory"
+      New-Item -Name "Binaries" -ItemType "directory"
+      Copy-Item -Path "angle\out\Build_64\*.lib" -Destination "x64" -Recurse 
+      Copy-Item -Path "angle\out\Build_64\*.dll" -Destination "x64" -Recurse 
+      Copy-Item -Path "angle\out\Build_64\*.pdb" -Destination "x64" -Recurse 
+      Copy-Item -Path "angle\out\Build_32\*.pdb" -Destination "x86" -Recurse 
+      Copy-Item -Path "angle\out\Build_32\*.lib" -Destination "x86" -Recurse 
+      Copy-Item -Path "angle\out\Build_32\*.dll" -Destination "x86" -Recurse 
+      Move-Item -Path "x64" -Destination "lib"
+      Move-Item -Path "x86" -Destination "lib"
+      Move-Item -Path "lib" -Destination "Binaries"
+      Copy-Item -Path "angle\include" -Destination "Binaries" -Recurse 
+      7z a ANGLE.zip Binaries\*
+    displayName: 'Copy Binaries'
+
+  - publish: $(Build.SourcesDirectory)/ANGLE.zip
+    artifact: ANGLE Binaries
+
+  - task: GitHubRelease@1
+    inputs:
+      gitHubConnection: 'msmshazan''s Github PAT'
+      repositoryName: 'msmshazan/anglebuild'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'userSpecifiedTag'
+      tag: 'Release-$(ANGLE_REVISION)'
+      title: 'Skia Binaries'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+      assets: '$(Build.SourcesDirectory)/ANGLE.zip'
