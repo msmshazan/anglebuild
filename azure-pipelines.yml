@@ -84,7 +84,7 @@ jobs:
 
   - publish: $(Build.SourcesDirectory)/ANGLE.zip
     artifact: ANGLE Binaries
-    
+
   - task: GitHubRelease@1
     inputs:
       gitHubConnection: 'msmshazan''s Github PAT'
@@ -93,7 +93,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
       tag: 'Release-$(ANGLE_REVISION)'
-      title: 'Skia Binaries'
+      title: 'ANGLE Binaries'
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
       assets: '$(Build.SourcesDirectory)/ANGLE.zip'
