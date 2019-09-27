@@ -8,60 +8,60 @@ variables:
   ANGLE_REVISION: 'f8bb908702bd5a0b8ce4ae0b109efdbc78afbf2b'
 
 jobs:
--job: Build Skia
- timeoutInMinutes: 0
- pool:
-  vmImage: 'windows-2019'
- steps:
- - powershell: |
-     Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -OutFile depot_tools.zip
-     &7z x depot_tools.zip -odepot_tools
-     Remove-Item depot_tools.zip
-   displayName: 'Fetch depot_tools'
+- job: Build Skia
+  timeoutInMinutes: 0
+  pool:
+   vmImage: 'windows-2019'
+  steps:
+  - powershell: |
+      Invoke-WebRequest -Uri "https://storage.googleapis.com/chrome-infra/depot_tools.zip" -OutFile depot_tools.zip
+      &7z x depot_tools.zip -odepot_tools
+      Remove-Item depot_tools.zip
+    displayName: 'Fetch depot_tools'
   
- - powershell: |
-     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
-     $env:Path = "$pwd\depot_tools;" + $env:Path
-     cd depot_tools
-     ./update_depot_tools.bat
-     dir
-   displayName: 'Config depot_tools'
+  - powershell: |
+      $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
+      $env:Path = "$pwd\depot_tools;" + $env:Path
+      cd depot_tools
+      ./update_depot_tools.bat
+      dir
+    displayName: 'Config depot_tools'
   
- - script: |
-     del C:\ProgramData\Chocolatey\bin\pytho*.exe
-     git clone https://chromium.googlesource.com/angle/angle
-     cd angle
-   displayName: 'Fetch angle repo'
+  - script: |
+      del C:\ProgramData\Chocolatey\bin\pytho*.exe
+      git clone https://chromium.googlesource.com/angle/angle
+      cd angle
+    displayName: 'Fetch angle repo'
 
- - powershell: |
-     choco install llvm 2>&1>$null
-     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
-     $env:Path = "$pwd\depot_tools;" + $env:Path
-     refreshenv
-     cd angle
-     python scripts\bootstrap.py
-     refreshenv
-     gclient sync --revision=$(ANGLE_REVISION)
-   displayName: 'Setup angle deps'
+  - powershell: |
+      choco install llvm 2>&1>$null
+      $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
+      $env:Path = "$pwd\depot_tools;" + $env:Path
+      refreshenv
+      cd angle
+      python scripts\bootstrap.py
+      refreshenv
+      gclient sync --revision=$(ANGLE_REVISION)
+    displayName: 'Setup angle deps'
 
- - script: |
-     set PATH=%cd%\depot_tools;%PATH%;
-     cd angle
-   displayName: 'Sync angle'
+  - script: |
+      set PATH=%cd%\depot_tools;%PATH%;
+      cd angle
+    displayName: 'Sync angle'
 
- - powershell: |
-     $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
-     $env:Path = "$pwd\depot_tools;" + $env:Path
-     cd angle
-     gn gen out/Build_32 --args='clang_win=\"C:\Program Files\LLVM\" target_cpu=\"x32\"' --ide=vs
-     gn gen out/Build_64 --args='clang_win=\"C:\Program Files\LLVM\" target_cpu=\"x64\"' --ide=vs
-   displayName: 'Setup build projects'
+  - powershell: |
+      $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
+      $env:Path = "$pwd\depot_tools;" + $env:Path
+      cd angle
+      gn gen out/Build_32 --args='clang_win=\"C:\Program Files\LLVM\" target_cpu=\"x32\"' --ide=vs
+      gn gen out/Build_64 --args='clang_win=\"C:\Program Files\LLVM\" target_cpu=\"x64\"' --ide=vs
+    displayName: 'Setup build projects'
 
- - script: |
-     call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
-     cd angle
-     msbuild out\Build_64\all.sln /m
-     msbuild out\Build_32\all.sln /m
-     cd out\Build_64
-     dir
-   displayName: 'Build ANGLE'
+  - script: |
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
+      cd angle
+      msbuild out\Build_64\all.sln /m
+      msbuild out\Build_32\all.sln /m
+      cd out\Build_64
+      dir
+    displayName: 'Build ANGLE'
