@@ -40,7 +40,7 @@ steps:
     (get-command python).Path
     python scripts\bootstrap.py
     refreshenv
-    gclient sync --revision=%SKIA_REVISION%
+    gclient sync --revision=$(ANGLE_REVISION)
   displayName: 'Setup angle deps'
 
 - script: |
