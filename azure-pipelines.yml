@@ -57,7 +57,7 @@ jobs:
       gn gen out/Build_64 --args='is_clang=true target_cpu=\"x64\"'
     displayName: 'Setup build projects'
 
-  - script: |
+  - powershell: |
       $env:Path = "$pwd\depot_tools;" + $env:Path
       &C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat
       cd angle
