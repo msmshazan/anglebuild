@@ -60,16 +60,16 @@ jobs:
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
       cd angle
-      msbuild out\Build_64\libANGLE.sln /m
-      msbuild out\Build_64\libEGL.sln /m
-      msbuild out\Build_64\libGL.sln /m
-      msbuild out\Build_64\libGLESv1_CM.sln /m
-      msbuild out\Build_64\libGLESv2.sln /m
-      msbuild out\Build_32\libANGLE.sln /m
-      msbuild out\Build_32\libEGL.sln /m
-      msbuild out\Build_32\libGL.sln /m
-      msbuild out\Build_32\libGLESv1_CM.sln /m
-      msbuild out\Build_32\libGLESv2.sln /m
+      msbuild out\Build_64\libANGLE.vcxproj /m
+      msbuild out\Build_64\libEGL.vcxproj /m
+      msbuild out\Build_64\libGL.vcxproj /m
+      msbuild out\Build_64\libGLESv1_CM.vcxproj /m
+      msbuild out\Build_64\libGLESv2.vcxproj /m
+      msbuild out\Build_32\libANGLE.vcxproj /m
+      msbuild out\Build_32\libEGL.vcxproj /m
+      msbuild out\Build_32\libGL.vcxproj /m
+      msbuild out\Build_32\libGLESv1_CM.vcxproj /m
+      msbuild out\Build_32\libGLESv2.vcxproj /m
     displayName: 'Build ANGLE'
 
   - powershell: |
