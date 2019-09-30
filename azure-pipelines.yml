@@ -61,16 +61,16 @@ jobs:
       $env:Path = "$pwd\depot_tools;" + $env:Path
       &("C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat")
       cd angle
-      autoninja out\Build_64 libANGLE
-      autoninja out\Build_64 libEGL 
-      autoninja out\Build_64 libGL 
-      autoninja out\Build_64 libGLESv1_CM 
-      autoninja out\Build_64 libGLESv2 
-      autoninja out\Build_32 libANGLE 
-      autoninja out\Build_32 libEGL 
-      autoninja out\Build_32 libGL 
-      autoninja out\Build_32 libGLESv1_CM 
-      autoninja out\Build_32 libGLESv2 
+      autoninja out\Build_64\obj\libANGLE
+      autoninja out\Build_64\obj\libEGL 
+      autoninja out\Build_64\obj\libGL 
+      autoninja out\Build_64\obj\libGLESv1_CM 
+      autoninja out\Build_64\obj\libGLESv2 
+      autoninja out\Build_32\obj\libANGLE 
+      autoninja out\Build_32\obj\libEGL 
+      autoninja out\Build_32\obj\libGL 
+      autoninja out\Build_32\obj\libGLESv1_CM 
+      autoninja out\Build_32\obj\libGLESv2 
     displayName: 'Build ANGLE'
 
   - powershell: |
