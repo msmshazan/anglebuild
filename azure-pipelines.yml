@@ -53,8 +53,8 @@ jobs:
       $env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
       $env:Path = "$pwd\depot_tools;" + $env:Path
       cd angle
-      gn gen out/Build_32 --args='is_clang=true target_cpu=\"x86\"'
-      gn gen out/Build_64 --args='is_clang=true target_cpu=\"x64\"'
+      gn gen out/Build_32 --args='is_clang=true is_debug=false target_cpu=\"x86\"'
+      gn gen out/Build_64 --args='is_clang=true is_debug=false target_cpu=\"x64\"'
     displayName: 'Setup build projects'
 
   - powershell: |
