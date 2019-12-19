@@ -60,30 +60,34 @@ jobs:
   - powershell: |
       $env:Path = "$pwd\depot_tools;" + $env:Path
       &("C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat")
+      New-Item -Name "x64" -ItemType "directory" 
+      New-Item -Name "x86" -ItemType "directory"
+      New-Item -Name "lib" -ItemType "directory"
+      New-Item -Name "Binaries" -ItemType "directory"
       cd angle
       autoninja -C out\Build_64 libANGLE
       autoninja -C out\Build_64 libEGL 
       autoninja -C out\Build_64 libGL 
       autoninja -C out\Build_64 libGLESv1_CM 
       autoninja -C out\Build_64 libGLESv2 
+      Copy-Item -Path "out\Release_64\*.lib" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Release_64\*.pdb" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Release_64\*.exe" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Release_64\*.dll" -Destination "..\x64" -Recurse
+      Remove-Item -LiteralPath "out\Release_64" -Force -Recurse  
       autoninja -C out\Build_32 libANGLE 
       autoninja -C out\Build_32 libEGL 
       autoninja -C out\Build_32 libGL 
       autoninja -C out\Build_32 libGLESv1_CM 
       autoninja -C out\Build_32 libGLESv2 
+      Copy-Item -Path "out\Release_32\*.lib" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Release_32\*.pdb" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Release_32\*.exe" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Release_32\*.dll" -Destination "..\x86" -Recurse
+      Remove-Item -LiteralPath "out\Release_32" -Force -Recurse 
     displayName: 'Build ANGLE'
 
   - powershell: |
-      New-Item -Name "x64" -ItemType "directory" 
-      New-Item -Name "x86" -ItemType "directory"
-      New-Item -Name "lib" -ItemType "directory"
-      New-Item -Name "Binaries" -ItemType "directory"
-      Copy-Item -Path "angle\out\Build_64\*.lib" -Destination "x64" -Recurse 
-      Copy-Item -Path "angle\out\Build_64\*.dll" -Destination "x64" -Recurse 
-      Copy-Item -Path "angle\out\Build_64\*.pdb" -Destination "x64" -Recurse 
-      Copy-Item -Path "angle\out\Build_32\*.pdb" -Destination "x86" -Recurse 
-      Copy-Item -Path "angle\out\Build_32\*.lib" -Destination "x86" -Recurse 
-      Copy-Item -Path "angle\out\Build_32\*.dll" -Destination "x86" -Recurse 
       Move-Item -Path "x64" -Destination "lib"
       Move-Item -Path "x86" -Destination "lib"
       Move-Item -Path "lib" -Destination "Binaries"
