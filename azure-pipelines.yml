@@ -72,21 +72,21 @@ jobs:
       autoninja -C out\Build_64 libGL 
       autoninja -C out\Build_64 libGLESv1_CM 
       autoninja -C out\Build_64 libGLESv2 
-      Copy-Item -Path "out\Release_64\*.lib" -Destination "..\x64" -Recurse 
-      Copy-Item -Path "out\Release_64\*.pdb" -Destination "..\x64" -Recurse 
-      Copy-Item -Path "out\Release_64\*.exe" -Destination "..\x64" -Recurse 
-      Copy-Item -Path "out\Release_64\*.dll" -Destination "..\x64" -Recurse
-      Remove-Item -LiteralPath "out\Release_64" -Force -Recurse  
+      Copy-Item -Path "out\Build_64\*.lib" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Build_64\*.pdb" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Build_64\*.exe" -Destination "..\x64" -Recurse 
+      Copy-Item -Path "out\Build_64\*.dll" -Destination "..\x64" -Recurse
+      Remove-Item -LiteralPath "out\Build_64" -Force -Recurse  
       autoninja -C out\Build_32 libANGLE 
       autoninja -C out\Build_32 libEGL 
       autoninja -C out\Build_32 libGL 
       autoninja -C out\Build_32 libGLESv1_CM 
       autoninja -C out\Build_32 libGLESv2 
-      Copy-Item -Path "out\Release_32\*.lib" -Destination "..\x86" -Recurse 
-      Copy-Item -Path "out\Release_32\*.pdb" -Destination "..\x86" -Recurse 
-      Copy-Item -Path "out\Release_32\*.exe" -Destination "..\x86" -Recurse 
-      Copy-Item -Path "out\Release_32\*.dll" -Destination "..\x86" -Recurse
-      Remove-Item -LiteralPath "out\Release_32" -Force -Recurse 
+      Copy-Item -Path "out\Build_32\*.lib" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Build_32\*.pdb" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Build_32\*.exe" -Destination "..\x86" -Recurse 
+      Copy-Item -Path "out\Build_32\*.dll" -Destination "..\x86" -Recurse
+      Remove-Item -LiteralPath "out\Build_32" -Force -Recurse 
     displayName: 'Build ANGLE'
 
   - powershell: |
