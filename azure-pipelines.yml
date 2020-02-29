@@ -102,7 +102,7 @@ jobs:
 
   - task: GitHubRelease@1
     inputs:
-      gitHubConnection: 'Github PAT'
+      gitHubConnection: 'msmshazan Github PAT'
       repositoryName: 'msmshazan/anglebuild'
       action: 'create'
       target: '$(Build.SourceVersion)'
