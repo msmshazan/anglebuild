@@ -5,7 +5,7 @@ variables:
   DEPOT_TOOLS_WIN_TOOLCHAIN: '0'
   DEPOT_TOOLS_METRICS: '0'
   PYTHON_HOME: ''
-  ANGLE_REVISION: 'ee7525af471223f96108c8c38b0202561d4ce8b2'
+  ANGLE_REVISION: 'dee4d7a54e441dfb399d1b6a62f4cfd1d84f3270'
   PYTHONWARNINGS: 'ignore:DEPRECATION::pip._internal.cli.base_command'
 
 jobs:
